@@ -41,8 +41,6 @@ async function loadArticles() {
     console.error("Errore nel caricamento degli articoli:", error);
   }
 }
-loadArticles();
-
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadArticles);
@@ -136,18 +134,16 @@ function renderLayout() {
       }
 
 
-    });
+   });
 
-    setupTimelineInteractions();
-
-    console.log("5. [RENDER] Ciclo completato. Inizializzazione interazioni...");
-    
-    if (typeof setupTimelineInteractions === 'function') {
-        setupTimelineInteractions();
-        console.log("6. [SUCCESS] Interazioni della timeline attivate!");
-    } else {
-        console.error("ERRORE: setupTimelineInteractions non è una funzione definita nel codice.");
-    }
+  console.log("5. [RENDER] Ciclo completato. Inizializzazione interazioni...");
+  
+  if (typeof setupTimelineInteractions === 'function') {
+      setupTimelineInteractions(); // L'unica chiamata pulita
+      console.log("6. [SUCCESS] Interazioni della timeline attivate!");
+  } else {
+      console.error("ERRORE: setupTimelineInteractions non è una funzione definita nel codice.");
+  }
 }
 
 
@@ -188,7 +184,7 @@ function setupTimelineInteractions() {
       
       if (targetArticle) {
         articles.forEach(art => art.classList.remove('expanded'));
-        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
         targetArticle.classList.add('expanded');
       }
     });
@@ -199,7 +195,17 @@ function setupTimelineInteractions() {
     if (header) {
       header.addEventListener('click', (e) => {
         e.stopPropagation();
+        
+        // Controlla se la card si sta aprendo o chiudendo
+        const isOpening = !card.classList.contains('expanded');
         card.classList.toggle('expanded');
+        
+        // Se si sta aprendo, aspetta un attimo che parta l'animazione e la centra in alto
+        if (isOpening) {
+          setTimeout(() => {
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 250); // I millisecondi di attesa per rendere lo scroll fluidissimo
+        }
       });
     }
   });
@@ -234,7 +240,7 @@ filterButtons.forEach(btn => {
         if (correspondingLine) correspondingLine.classList.add('filtered-out');
       }
     });
-    if (firstVisibleArticle) firstVisibleArticle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (firstVisibleArticle) firstVisibleArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 
@@ -294,7 +300,7 @@ function scrollToMain() {
         const targetId = bookHistoryEvents[currentCoverIndex].id;
         const targetArticle = document.getElementById(targetId);
         if (targetArticle) {
-          targetArticle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
           targetArticle.classList.add('expanded');
         }
       }
@@ -394,7 +400,7 @@ function scrollToMain() {
           const targetId = bookHistoryEvents[currentCoverIndex].id;
           const targetArticle = document.getElementById(targetId);
           if (targetArticle) {
-            targetArticle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }
         isTransitioning = false;

@@ -524,7 +524,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   display: flex;
   flex-direction: column;
   justify-content: flex-start !important;
-  gap: 5px !important;
+  gap: 9px !important;
   pointer-events: auto;
   z-index: 20;
   opacity: 0;

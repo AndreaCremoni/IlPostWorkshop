@@ -520,11 +520,10 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 .timeline-bar {
   position: fixed;
   left: 40px;
-  top: 100px
-  transform: none !important;
-  height: auto !important;
+  margin-top: 200px
   display: flex;
   flex-direction: column;
+  justify-content: flex-start !important;
   gap: 5px !important;
   pointer-events: auto;
   z-index: 20;
@@ -752,7 +751,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 }
 
 .article-card.expanded .article-card-content {
-  max-height: 400px;
+  max-height: 3000px;
   opacity: 1;
   visibility: visible;
   transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;

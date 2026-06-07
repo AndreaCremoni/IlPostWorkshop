@@ -501,7 +501,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 
 .pub-meta {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   color: #5b7b8a;
   line-height: 1.4;
   font-weight: bold;

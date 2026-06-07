@@ -516,15 +516,14 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   margin: 0;
 }
 
-/* Pettine / Tracciato Linee della Sequenza Temporale */
 .timeline-bar {
   position: fixed;
   left: 40px;
-  margin-top: 200px
+  top: 220px !important; 
   display: flex;
   flex-direction: column;
   justify-content: flex-start !important;
-  gap: 9px !important;
+  gap: 9px !important; 
   pointer-events: auto;
   z-index: 20;
   opacity: 0;
@@ -537,7 +536,6 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   visibility: visible;
 }
 
-/* Singolo ago/tacca del pettine timeline */
 .timeline-line {
   box-sizing: content-box;
   width: 24px;

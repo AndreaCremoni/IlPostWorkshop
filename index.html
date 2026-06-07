@@ -10,18 +10,18 @@
 <body class="cover-active lock-scroll">
 
   <!-- SCHERMATA DI INTRODUZIONE -->
-<div id="introduzione" class="introduzione-cover">
-  <div class="introduzione-content">
-    <h2>Benvenuti!</h2>
-    <p>Questo è solo un piccolo concept e non è ottimizzato per piccoli schermi. Se siete da mobile, per favore passate alla visualizzazione desktop del browser e tenete il telefono in landscape.</p>
-    <p>Ho inserito meno articoli di quanti avrei voluto, ma spero che bastino a rendere l'idea del progetto.</p>
-    <p>P.S: Nella facciata con la sequenza temporale 'interattiva', cliccando su 'Thread' compaiono delle card tra cui "scegliere". Sono a fine puramente dimostrativo!</p>
-    <h2">Grazie mille!</h2>
-    <div class="intro-hint">Tocca o clicca ovunque per iniziare</div>
+  <div id="introduzione" class="introduzione-cover">
+    <div class="introduzione-content">
+      <h2>Benvenuti!</h2>
+      <p>Questo è solo un piccolo concept e non è ottimizzato per piccoli schermi. Se siete da mobile, per favore passate alla visualizzazione desktop del browser e tenete il telefono in landscape.</p>
+      <p>Ho inserito meno articoli di quanti avrei voluto, ma spero che bastino a rendere l'idea del progetto.</p>
+      <p>P.S: Nella facciata con la sequenza temporale 'interattiva', cliccando su 'Thread' compaiono delle card tra cui "scegliere". Sono a fine puramente dimostrativo!</p>
+      <h2>Grazie mille!</h2>
+      <div class="intro-hint">Tocca o clicca ovunque per iniziare</div>
+    </div>
   </div>
-</div>
 
-<!-- COVER INIZIALE --> 
+  <!-- COVER INIZIALE -->
   <div id="initial-cover" class="initial-cover">
     <div class="cover-content-wrapper">
       <button id="masterpost-button" class="wave" onclick="triggerCoverAnimation(event)">MasterPost Guerra Usa Iran</button>
@@ -31,10 +31,10 @@
 
   <script src="script.js?v=8" defer></script>
 
-<!-- NUOVA COPERTINA (montagna + THREAD + timeline + scorri giù) -->
+  <!-- NUOVA COPERTINA (montagna + THREAD + timeline + scorri giù) -->
   <section class="cover-section" id="cover-section">
     <div class="cover-hero">
-      
+
       <!-- Contenitore SOLO per i testi (Evita conflitti di posizionamento) -->
       <div class="cover-container">
         <h3 class="cover-title" id="masterpost-title" style="cursor: pointer;"><b>Thread</b></h3>
@@ -46,7 +46,7 @@
           <div class="threads-label">Altri Threads:</div>
           <div class="threads-close-btn" id="close-threads-btn">&times;</div>
         </div>
-        
+
         <div class="threads-cards-container">
           <div class="custom-thread-card">
             <div class="card-image-wrapper">
@@ -54,7 +54,7 @@
             </div>
             <div class="card-caption">Governo Meloni</div>
           </div>
-          
+
           <div class="custom-thread-card">
             <div class="card-image-wrapper">
               <img src="https://img.lemde.fr/2025/07/16/0/0/5900/3933/664/0/75/0/b59aa15_ftp-import-images-1-7foxltctlcvd-2025-07-16t165639z-837812458-rc2snfac02lf-rtrmadp-3-usa-trump-bahrain.JPG" alt="Trump II">
@@ -79,20 +79,18 @@
       </div>
 
       <div class="cover-controls-container">
-
-      <!-- Elementi di controllo spostati come figli diretti di cover-hero -->
-      <div class="cover-timeline-wrapper">
-        <button class="timeline-nav-btn btn-left" onclick="moveTimeline(-1)">&lt;</button>
-        <div class="cover-timeline-bar">
-          <div class="cover-timeline-indicator"></div>
+        <!-- Elementi di controllo spostati come figli diretti di cover-hero -->
+        <div class="cover-timeline-wrapper">
+          <button class="timeline-nav-btn btn-left" onclick="moveTimeline(-1)">&lt;</button>
+          <div class="cover-timeline-bar">
+            <div class="cover-timeline-indicator"></div>
+          </div>
+          <button class="timeline-nav-btn btn-right" onclick="moveTimeline(1)">&gt;</button>
         </div>
-        <button class="timeline-nav-btn btn-right" onclick="moveTimeline(1)">&gt;</button>
-      </div>
 
-      <button class="cover-scroll-button" onclick="scrollToMain()">
-        scorri giù ↓
-      </button>
-
+        <button class="cover-scroll-button" onclick="scrollToMain()">
+          scorri giù ↓
+        </button>
       </div>
 
     </div>
@@ -108,18 +106,18 @@
       </div>
     </header>
 
-<div class="subheader" id="subheader">
-  <div class="subheader-filters">
-    <button class="filter-btn active" data-filter="all">Tutti gli articoli</button>
-    <button class="filter-btn" data-filter="OM">Operazioni militari</button>
-    <button class="filter-btn" data-filter="ES">Energia e Stretto di Hormuz</button>
-    <button class="filter-btn" data-filter="DN">Diplomazia e negoziati</button>
-    <button class="filter-btn" data-filter="VC">Vittime civili</button>
-    <button class="filter-btn" data-filter="SA">Strategia e analisi politica</button>
-    <button class="filter-btn" data-filter="ER">Escalation regionale</button>
-    <button class="filter-btn" data-filter="AL">Attori e Leadership</button>
-  </div>
-</div>
+    <div class="subheader" id="subheader">
+      <div class="subheader-filters">
+        <button class="filter-btn active" data-filter="all">Tutti gli articoli</button>
+        <button class="filter-btn" data-filter="OM">Operazioni militari</button>
+        <button class="filter-btn" data-filter="ES">Energia e Stretto di Hormuz</button>
+        <button class="filter-btn" data-filter="DN">Diplomazia e negoziati</button>
+        <button class="filter-btn" data-filter="VC">Vittime civili</button>
+        <button class="filter-btn" data-filter="SA">Strategia e analisi politica</button>
+        <button class="filter-btn" data-filter="ER">Escalation regionale</button>
+        <button class="filter-btn" data-filter="AL">Attori e Leadership</button>
+      </div>
+    </div>
 
     <div class="main-content">
       <div class="sidebar">
@@ -131,78 +129,66 @@
 
       <main class="article-area" id="article-area"></main>
 
-
-    <!-- Sezione per mappa interattiva -->
-  
-    <div class="right-panel" id="right-panel">
-      <div class="map-container">
-        <h4 class="map-captionTitoloPrincipale">Mappa Interattiva</h4>
-        
-        <div class="map-rectangle">
-          <button class="map-nav-btn prev-btn" id="map-prev">&lt;</button>
+      <!-- Sezione per mappa interattiva -->
+      <div class="right-panel" id="right-panel">
+        <div class="map-container">
+          <h4 class="map-captionTitoloPrincipale">Mappa Interattiva</h4>
           
-          <img src="BasiRisorse.png" alt="Mappa Interattiva" id="map-img" class="map-image-content">
+          <div class="map-rectangle">
+            <button class="map-nav-btn prev-btn" id="map-prev">&lt;</button>
+            <img src="BasiRisorse.png" alt="Mappa Interattiva" id="map-img" class="map-image-content">
+            <button class="map-nav-btn next-btn" id="map-next">&gt;</button>
+          </div>
           
-          <button class="map-nav-btn next-btn" id="map-next">&gt;</button>
+          <p class="map-captionTitoloImmagine" id="map-caption">Basi e risorse di appoggio degli Stati Uniti attaccate dall'Iran</p>
         </div>
-        
-        <p class="map-captionTitoloImmagine" id="map-caption">Basi e risorse di appoggio degli Stati Uniti attaccate dall'Iran</p>
 
-      </div>
+        <hr class="panel-divider">
 
-      
-      <hr class="panel-divider">
+        <!-- Sezione per spiegato bene e altri contenuti -->
+        <div class="spiegato-bene-container">
+          <h4 class="sb-section-title">Spiegato bene</h4>
+          <div class="sb-articles-list">
+            <div class="sb-article">
+              <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/02/28/1772281921-jet-usa.jpg" alt="Anteprima" class="sb-image-placeholder">
+              <a href="https://www.ilpost.it/2026/02/28/cronologia-escalation-israele-stati-uniti-iran/" target="_blank" rel="noopener" class="sb-title">Come siamo arrivati fin qui tra Stati Uniti, Iran e Israele</a>
+            </div>
 
+            <div class="sb-article">
+              <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/02/28/1772282212-teheran.jpg" alt="Anteprima" class="sb-image-placeholder">
+              <a href="https://www.ilpost.it/2026/02/28/israele-ha-lanciato-un-attacco-contro-liran/" target="_blank" rel="noopener" class="sb-title">Cosa sappiamo dell'attacco di Israele e degli Stati Uniti contro l'Iran</a>
+            </div>
 
-      <!-- Sezione per spiegato bene e altri contenuti -->
+            <div class="sb-article">
+              <img src="https://www.ilpost.it/wp-content/uploads/2026/03/01/1772381570-AP26060512560711.jpg" alt="Anteprima" class="sb-image-placeholder">
+              <a href="https://www.ilpost.it/2026/03/01/attacchi-iran-paesi-del-golfo/" target="_blank" rel="noopener" class="sb-title">Perché l'Iran attacca obiettivi civili nei paesi del Golfo</a>
+            </div>
 
-      <div class="spiegato-bene-container">
-        <h4 class="sb-section-title">Spiegato bene</h4>
-        <div class="sb-articles-list">
-  
-          <div class="sb-article">
-            <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/02/28/1772281921-jet-usa.jpg" alt="Anteprima" class="sb-image-placeholder">
-            <a href="https://www.ilpost.it/2026/02/28/cronologia-escalation-israele-stati-uniti-iran/" target="_blank" rel="noopener" class="sb-title">Come siamo arrivati fin qui tra Stati Uniti, Iran e Israele</a>
+            <div class="sb-article">
+              <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/03/02/1772454167-ira1.jpg" alt="Anteprima" class="sb-image-placeholder">
+              <a href="https://www.ilpost.it/2026/03/02/iran-guerra-risposte/" target="_blank" rel="noopener" class="sb-title">Le cose da sapere sull'Iran per capire questa guerra</a>
+            </div>
+
+            <div class="sb-article">
+              <img src="https://www.ilpost.it/wp-content/uploads/2026/03/02/1772487616-GettyImages-2263361689.jpg" alt="Anteprima" class="sb-image-placeholder">
+              <a href="https://www.ilpost.it/2026/03/02/trump-iran-venezuela/" target="_blank" rel="noopener" class="sb-title">I due approcci alla guerra di Trump</a>
+            </div>
+
+            <div class="sb-article">
+              <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/03/04/1772607520-ilpost_2026030407570732_910f4a23c7b48d4a6933b321149d5733.jpg" alt="Anteprima" class="sb-image-placeholder">
+              <a href="https://www.ilpost.it/2026/03/08/iran-mojtaba-khamenei/" target="_blank" rel="noopener" class="sb-title">Chi è Mojtaba Khamenei</a>
+            </div>
+
+            <div class="sb-article">
+              <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/03/03/1772570115-ilpost_20260303213438377_a869a4011f3f0e5803b2a0ef1e52570f.jpg" alt="Anteprima" class="sb-image-placeholder">
+              <a href="https://www.ilpost.it/2026/03/03/cosa-sono-i-droni-shahed-inventati-dalliran/" target="_blank" rel="noopener" class="sb-title">Cosa sono i droni Shahed, inventati dall'Iran</a>
+            </div>
           </div>
-
-          <div class="sb-article">
-            <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/02/28/1772282212-teheran.jpg" alt="Anteprima" class="sb-image-placeholder">
-            <a href="https://www.ilpost.it/2026/02/28/israele-ha-lanciato-un-attacco-contro-liran/" target="_blank" rel="noopener" class="sb-title">Cosa sappiamo dell'attacco di Israele e degli Stati Uniti contro l'Iran</a>
-          </div>
-
-          <div class="sb-article">
-            <img src="https://www.ilpost.it/wp-content/uploads/2026/03/01/1772381570-AP26060512560711.jpg" alt="Anteprima" class="sb-image-placeholder">
-            <a href="https://www.ilpost.it/2026/03/01/attacchi-iran-paesi-del-golfo/" target="_blank" rel="noopener" class="sb-title">Perché l'Iran attacca obiettivi civili nei paesi del Golfo</a>
-          </div>
-
-          <div class="sb-article">
-            <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/03/02/1772454167-ira1.jpg" alt="Anteprima" class="sb-image-placeholder">
-            <a href="https://www.ilpost.it/2026/03/02/iran-guerra-risposte/" target="_blank" rel="noopener" class="sb-title">Le cose da sapere sull'Iran per capire questa guerra</a>
-          </div>
-
-          <div class="sb-article">
-            <img src="https://www.ilpost.it/wp-content/uploads/2026/03/02/1772487616-GettyImages-2263361689.jpg" alt="Anteprima" class="sb-image-placeholder">
-            <a href="https://www.ilpost.it/2026/03/02/trump-iran-venezuela/" target="_blank" rel="noopener" class="sb-title">I due approcci alla guerra di Trump</a>
-          </div>
-
-          <div class="sb-article">
-            <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/03/04/1772607520-ilpost_2026030407570732_910f4a23c7b48d4a6933b321149d5733.jpg" alt="Anteprima" class="sb-image-placeholder">
-            <a href="https://www.ilpost.it/2026/03/08/iran-mojtaba-khamenei/" target="_blank" rel="noopener" class="sb-title">Chi è Mojtaba Khamenei</a>
-          </div>
-
-          <div class="sb-article">
-            <img src="https://static-prod.cdnilpost.com/wp-content/uploads/2026/03/03/1772570115-ilpost_20260303213438377_a869a4011f3f0e5803b2a0ef1e52570f.jpg" alt="Anteprima" class="sb-image-placeholder">
-            <a href="https://www.ilpost.it/2026/03/03/cosa-sono-i-droni-shahed-inventati-dalliran/" target="_blank" rel="noopener" class="sb-title">Cosa sono i droni Shahed, inventati dall'Iran</a>
-          </div>
-
         </div>
       </div>
     </div>
-    </div>
- 
- 
-  <!-- Sezione homepage finta -->
 
+    <!-- Sezione homepage finta -->
     <div class="home-view" id="home-view" style="display: none;">
       <button class="back-button" id="back-button">← Back to Timeline</button>
       <div class="newspaper-layout">
@@ -230,8 +216,6 @@
       </div>
     </div>
   </div>
-
-
 
 </body>
 </html>

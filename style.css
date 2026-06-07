@@ -505,7 +505,6 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   color: #5b7b8a;
   line-height: 1.4;
   font-weight: bold;
-  letter-spacing: 2px;
   display: block;
   margin-bottom: 20px;
 }
@@ -528,7 +527,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   display: flex;
   flex-direction: column;
   justify-content: flex-end !important;
-  gap: 2px !important;
+  gap: 5px !important;
   pointer-events: auto;
   z-index: 20;
   opacity: 0;

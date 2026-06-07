@@ -520,13 +520,11 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 .timeline-bar {
   position: fixed;
   left: 40px;
-  top: auto !important;
-  bottom: 40px !important;
+  top: 100px
   transform: none !important;
   height: auto !important;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end !important;
   gap: 5px !important;
   pointer-events: auto;
   z-index: 20;

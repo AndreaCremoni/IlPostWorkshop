@@ -1,5 +1,8 @@
-/* ========== RESET E STRUTTURA SCORREVOLE ========== */
-html, body {
+/* ==========================================================================
+   1. RESET, TIPOGRAFIA E STRUTTURA GLOBALE
+   ========================================================================== */
+html, 
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -9,24 +12,12 @@ html, body {
   scroll-behavior: smooth;
 }
 
-
-/* Blocca lo scroll della pagina */
 body.lock-scroll {
   overflow: hidden;
   height: 100vh;
 }
 
-.cover-section.hidden {
-  display: none !important;
-}
-/* Rinforzo per l'header: mantiene la priorità visiva */
-.top-header {
-  position: relative;
-  z-index: 100;
-  flex-shrink: 0;
-}
-
-/* Previene lo scrolling prima che venga cliccata la pagina*/
+/* Blocchi preventivi di scrolling legati alla copertina iniziale */
 html:has(#initial-cover:not(.fade-out)),
 html:has(#initial-cover:not(.fade-out)) body,
 html:has(#initial-cover:not(.fade-out)) .article-area,
@@ -34,43 +25,25 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   overflow: hidden !important;
   height: 100vh !important;
 }
-/* ========== COPERTINA INIZIALE (overlay fisso) ========== */
 
 
+/* ==========================================================================
+   2. COPERTINA INIZIALE (Figma Concept Overlay)
+   ========================================================================== */
 .initial-cover {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #FFF; /* Sfondo di riempimento per schermi fuori scala */
+  background-color: #FFF;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  /* Gestione della dissolvenza finale */
   transition: opacity 0.25s ease-out, visibility 0.25s;
   opacity: 1;
   visibility: visible;
-}
-
-
-.cover-content-wrapper {
-  position: relative;
-  aspect-ratio: 1858 / 975; 
-  
-  /* Permette al contenitore di allargarsi al massimo... */
-  width: 100%;
-  max-width: 100vw;
-  /* ...ma lo costringe a rimpicciolirsi se lo schermo è troppo basso, mantenendo l'aspect-ratio */
-  max-height: 100vh;
-  
-  background-image: url('IlPostFigmaDefinitivo.png');
-  
-  /* Sostituito "contain" con "100% 100%": ora l'immagine riempie esattamente il box proporzionato, senza spazi vuoti */
-  background-size: 100% 100%; 
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .initial-cover.fade-out {
@@ -78,67 +51,62 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   visibility: hidden;
 }
 
+.cover-content-wrapper {
+  position: relative;
+  aspect-ratio: 1858 / 975;
+  width: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  background-image: url('IlPostFigmaDefinitivo.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Invisible Trigger Button */
 #masterpost-button {
-  /* Dimensioni invariate   13.455%;*/
   width: 13.45%;
   height: 7.179%;
-  
-  /* Nuove coordinate corrette */
   position: absolute;
   left: 66.5%;
   top: 8%;
-  
-  /* Reset anti-interferenze */
   margin: 0 !important;
   padding: 0 !important;
   transform: none !important;
   box-sizing: border-box !important;
-  
-  /* Aspetto e bordi */
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  
   background-color: transparent;
   color: transparent;
-  
-  /* Livelli di sicurezza */
-  z-index: 1010; 
+  z-index: 1010;
   outline: none;
 }
 
-
+/* Animazione Wave Effetto Pulsante */
 .wave {
-  animation: wave-pulse 2s infinite; /* Dura 2 secondi e si ripete all'infinito */
+  animation: wave-pulse 2s infinite;
 }
 
 @keyframes wave-pulse {
   0% {
-    /* L'animazione parte 5px all'interno dei confini fisici del bottone */
     box-shadow: 0 0 0 -10px rgba(255, 246, 100, 0.6);
   }
   70% {
-    /* Espansione massima compensata per mantenere la proporzione dell'effetto */
     box-shadow: 0 0 0 20px rgba(255, 246, 100, 0);
   }
   100% {
-    /* Ritorno al punto di partenza interno */
     box-shadow: 0 0 0 -10px rgba(255, 246, 100, 0);
   }
 }
 
-/* ========== EFFETTO DI ESPANSIONE (RIPPLE AGGIORNATO) ========== */
+/* Effetto Espansione Click (Ripple) */
 .transition-ripple {
   position: absolute;
   border-radius: 50%;
-  
-  /* Keeps your original half-transparent pale yellow background color */
   background-color: rgb(255 253 141 / 0.25);
-  
-  pointer-events: none; /* Evita che blocchi il click sul bottone */
+  pointer-events: none;
   z-index: 1005;
-  
-  /* Start completely scaled down */
   transform: scale(0);
 }
 
@@ -148,24 +116,29 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 
 .transition-ripple.active {
   transform: scale(2);
-  /* Uses the exact 700ms duration from your second code block */
   transition: transform 700ms ease-out;
 }
 
 
-/* ========== NUOVA COPERTINA (foto + MASTERPOST) ========== */
+/* ==========================================================================
+   3. SEZIONE HERO / COPERTINA PRINCIPALE DI SEZIONE
+   ========================================================================== */
 .cover-section {
   height: 100vh;
   width: 100%;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Allinea la gabbia dei contenuti a sinistra */
-  padding-left: 8%; /* Distanza elegante dal bordo sinistro dello schermo */
+  justify-content: flex-start;
+  padding-left: 8%;
   overflow: hidden;
 }
 
-/* Immagine specchiata (Uomo con bandiera a destra) */
+.cover-section.hidden {
+  display: none !important;
+}
+
+/* Immagine di Sfondo Specchiata */
 .cover-section::before {
   content: "";
   position: absolute;
@@ -177,11 +150,11 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
-  transform: scaleX(-1); 
+  transform: scaleX(-1);
   z-index: 0;
 }
 
-/* MODIFICA 3: Oscuramento limitato al 40% della pagina da sinistra */
+/* Overlay Sfumato Asimmetrico (Sinistra Scuro -> Destra Trasparente) */
 .cover-section::after {
   content: "";
   position: absolute;
@@ -189,13 +162,11 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   left: 0;
   width: 100%;
   height: 100%;
-  /* La sfumatura parte scura a sinistra e diventa 100% trasparente (0) al 40% della larghezza */
   background: linear-gradient(90deg, rgba(15, 20, 25, 0.85) 0%, rgba(15, 20, 25, 0.5) 25%, rgba(15, 20, 25, 0) 40%);
   backdrop-filter: blur(1px);
   z-index: 1;
 }
 
-/* MODIFICA 2: Contenitore Hero allineato a sinistra */
 .cover-hero {
   width: 100%;
   max-width: 850px;
@@ -208,33 +179,30 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   box-sizing: border-box;
 }
 
-/* MODIFICA 2.1: Container testi (ora contiene solo i titoli) */
+/* Scrittura e Titoli */
 .cover-container {
-  position: relative; /* <--- AGGIUNTA: protegge i testi */
-  z-index: 2;         /* <--- AGGIUNTA: mantiene i testi sopra lo sfondo */
+  position: relative;
+  z-index: 2;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 2rem; 
+  margin-bottom: 2rem;
 }
 
-/* MODIFICA 1: Tornato "Titolo Piccolo" (Occhiello) */
 .cover-title {
-  font-size:  1.25rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  font-family: Garamond,'Times New Roman', Times, serif;
+  font-family: Garamond, 'Times New Roman', Times, serif;
   letter-spacing: 0.2rem;
-  color: #8B5A2B; /* Colore cuoio/marrone d'accento */
-  margin-bottom: -25px; /* Spazio esatto di 20px sopra il sottotitolo */
+  color: #8B5A2B;
+  margin-bottom: -25px;
   text-align: left;
   user-select: none;
 }
 
-/* MODIFICA 1.1 e 4: Sottotitolo Grande, Bianco e su una sola riga con (2026) */
 .cover-subtitle {
-  /* Scaled down from clamp(2rem, 4.5vw, 3.5rem) */
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem); 
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
   font-weight: 400;
   font-family: Garamond, 'Times New Roman', Times, serif;
   letter-spacing: 0.2rem;
@@ -243,54 +211,50 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   margin-bottom: 0;
   text-align: left;
   line-height: 1.1;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   user-select: none;
   white-space: nowrap;
 }
 
-/* Il Box Contenitore a tutta larghezza schermo */
+/* ==========================================================================
+   4. CONTROLLI DI SEZIONE (Timeline di Copertina & Scroll Button)
+   ========================================================================== */
 .cover-controls-container {
   position: absolute;
-  bottom: 80px; /* Leggermente abbassato per bilanciare l'impilamento verticale */
+  bottom: 80px;
   left: 0;
-  width: 100%;                  
-  
-  /* Dispone gli elementi in colonna (uno sopra l'altro) e li centra orizzontalmente */
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;         
-  
-  padding: 0 50px;             
-  gap: 25px; /* Spazio verticale tra la timeline e il bottone */
+  align-items: center;
+  padding: 0 50px;
+  gap: 25px;
   box-sizing: border-box;
   z-index: 20;
 }
 
-/* La Timeline (Occupa TUTTA la metà sinistra disponibile) */
+/* Barra Navigazione Temporale */
 .cover-timeline-wrapper {
-  /* Larghezza fissa a 800px, ma si restringe se lo schermo è più piccolo */
   width: 100%;
-  max-width: 600px;           
-  height: 72px; 
-  
+  max-width: 600px;
+  height: 72px;
   display: flex;
   align-items: center;
   border: 3px solid #8B5A2B;
   border-radius: 10px;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(6px);
   box-sizing: border-box;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Stessa ombra del bottone */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  margin: 0; /* Rimuove vecchi margini che potrebbero sbilanciare la centratura */
+  margin: 0;
 }
 
-/* Pulsanti laterali freccia */
 .timeline-nav-btn {
   width: 50px;
   height: 100%;
-  background: transparent; /* TRASPARENTE: eredita il vetro del contenitore senza sommare il bianco */
+  background: transparent;
   border: none;
   cursor: pointer;
   color: #8B5A2B;
@@ -301,19 +265,19 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 }
 
 .timeline-nav-btn:hover {
-  background: rgba(139, 90, 43, 0.08); 
+  background: rgba(139, 90, 43, 0.08);
 }
 
 .btn-left { border-right: 1px solid rgba(139, 90, 43, 0.3); }
 .btn-right { border-left: 1px solid rgba(139, 90, 43, 0.3); }
 
+/* Generazione dinamica dei segmenti della timeline di copertina */
 .cover-timeline-bar {
   flex-grow: 1;
   width: 100%;
-  height: 100%; 
-  background: transparent; /* TRASPARENTE: rimosso il terzo livello di bianco */
+  height: 100%;
+  background: transparent;
   position: relative;
-  
   background-image:
     linear-gradient(#8B5A2B, #8B5A2B), linear-gradient(#8B5A2B, #8B5A2B), 
     linear-gradient(#8B5A2B, #8B5A2B), linear-gradient(#8B5A2B, #8B5A2B), 
@@ -324,33 +288,29 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
     linear-gradient(#8B5A2B, #8B5A2B), linear-gradient(#8B5A2B, #8B5A2B), 
     linear-gradient(#8B5A2B, #8B5A2B), linear-gradient(#8B5A2B, #8B5A2B), 
     linear-gradient(#8B5A2B, #8B5A2B);
-
   background-size: 
     3px 60%, 3px 30%, 3px 60%, 3px 30%, 3px 30%, 3px 30%, 3px 30%, 3px 30%, 
     3px 60%, 3px 60%, 3px 30%, 3px 30%, 3px 30%, 3px 30%, 3px 30%, 3px 30%,
     100% 3px;
-
   background-position:
     5% center,   11% center,  17% center,  23% center, 
     29% center,  35% center,  41% center,  47% center, 
     53% center,  59% center,  65% center,  71% center, 
     77% center,  83% center,  89% center,  95% center,
     center center;
-
   background-repeat: no-repeat;
 }
 
-/* Indicatore a triangolo */
 .cover-timeline-indicator {
   position: absolute;
   bottom: 0;
-  left: 50%; 
+  left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 12px solid #ff0000; 
+  border-bottom: 12px solid #ff0000;
   z-index: 10;
   cursor: grab;
 }
@@ -359,41 +319,41 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   cursor: grabbing;
 }
 
-/* Il Bottone (Posizionato nella metà destra) */
+/* Bottone Scorrimento */
 .cover-scroll-button {
-  /* Larghezza variabile che si adatta al testo */
-  width: auto;                  
-  min-width: max-content;       
-  white-space: nowrap;          
-  padding: 0.5rem 1.75rem; 
+  width: auto;
+  min-width: max-content;
+  white-space: nowrap;
+  padding: 0.5rem 1.75rem;
   margin: 0;
   box-sizing: border-box;
-
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(6px);
   border: 2px solid #8B5A2B;
   color: #3a2c1c;
   font-family: 'Inter', 'Helvetica Neue', sans-serif;
-  font-size: 0.98rem; 
+  font-size: 0.98rem;
   font-weight: 400;
   letter-spacing: 0.07em;
   border-radius: 3.75rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   animation: wave-pulse 2s infinite;
 }
 
 .cover-scroll-button:hover {
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-color: #5a3e1a;
   color: #1a1a1a;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 
-/* ========== MAIN WRAPPER (height 100vh, contiene l'interfaccia originale) ========== */
+/* ==========================================================================
+   5. INTERFACCIA APPLICATIVO (Main Layout Headers & Filters)
+   ========================================================================== */
 .main-wrapper {
   height: 100vh;
   width: 100%;
@@ -403,7 +363,6 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   background-color: #e8f4f8;
 }
 
-/* Top Header */
 .top-header {
   background-color: #ffffff;
   padding: 20px 40px;
@@ -412,7 +371,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  z-index: 30;
+  z-index: 100;
   position: relative;
   flex-shrink: 0;
 }
@@ -447,7 +406,6 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   justify-content: flex-end;
 }
 
-/* Stile del pulsante (identico a .back-button ma ottimizzato per l'header) */
 .cover-back-button {
   background-color: #5b7b8a;
   color: #ffffff;
@@ -466,7 +424,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   background-color: #4a6572;
 }
 
-/* Subheader */
+/* Blocco Filtri Sotto-Header */
 .subheader {
   background-color: #f5f5f5;
   padding: 12px 40px;
@@ -488,52 +446,6 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   gap: 6px;
 }
 
-/* Main Content Container (flessibile) */
-.main-content {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  min-height: 0;
-}
-
-/* Sidebar with light blue background */
-.sidebar {
-  position: relative;
-  width: 300px;
-  height: 100%;
-  padding: 40px 20px 40px 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 10;
-  pointer-events: none;
-  background-color: #cce5ed;
-}
-
-.editorial-header {
-  pointer-events: auto;
-}
-
-.pub-meta {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #5b7b8a;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #4a6572;
-  margin: 0;
-}
-
-/* Filters */
 .filter-btn {
   background: transparent;
   border: 1px solid #c0d6df;
@@ -558,54 +470,103 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   border-color: #5b7b8a;
 }
 
-/* Timeline Bar (The Comb) - White */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+
+/* ==========================================================================
+   6. INDICE LATERALE & STRUTTURA TIMELINE DINAMICA (The Comb)
+   ========================================================================== */
+.sidebar {
+  position: relative;
+  width: 300px;
+  height: 100%;
+  padding: 40px 20px 40px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+  pointer-events: none;
+  background-color: #cce5ed;
+}
+
+.editorial-header {
+  pointer-events: auto;
+}
+
+.pub-meta {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  color: #5b7b8a;
+  line-height: 1.4;
+  font-weight: bold;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4a6572;
+  margin: 0;
+}
+
+/* Pettine / Tracciato Linee della Sequenza Temporale */
 .timeline-bar {
   position: fixed;
   left: 40px;
-  top: calc(50% + 50px);
-  transform: translateY(-50%);
+  top: auto !important;
+  bottom: 40px !important;
+  transform: none !important;
+  height: auto !important;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end !important;
+  gap: 2px !important;
   pointer-events: auto;
   z-index: 20;
-
-  /* Nascondiamo il comb all'avvio */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
-/* Per farlo apparire*/
 .timeline-bar.visible {
   opacity: 1;
   visibility: visible;
 }
 
+/* Singolo ago/tacca del pettine timeline */
 .timeline-line {
   box-sizing: content-box;
-  width: 24px; /* Scaled down from 30px */
-  height: 5px; /* Scaled down from 5px */
-  margin: 0;
-  padding: 13px 0; /* Scaled down from 13px */
+  width: 24px;
+  height: 5px !important;
+  padding: 4px 0 !important;
+  margin: 0 !important;
   background-color: #ffffff;
-  background-clip: content-box; 
+  background-clip: content-box;
   cursor: pointer;
   position: relative;
   transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Forzatura larghezza massima per i positivi */
 .timeline-line.always-long {
   width: 110px !important;
   background-color: #ffffff;
   background-clip: content-box;
 }
 
-/* Cambia colore in rosso SOLO quando è attivo (cliccato) */
-.timeline-line.always-long.active {
+.timeline-line.always-long.active,
+.timeline-line.active {
   background-color: #a83232 !important;
   background-clip: content-box;
+  width: 110px !important;
+  z-index: 25;
 }
 
 .timeline-line.always-long .label {
@@ -613,7 +574,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 }
 
 .timeline-line.hovered {
-  width: 110px;
+  width: 110px !important;
   background-color: #ffffff;
   background-clip: content-box;
   z-index: 50;
@@ -621,50 +582,42 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 
 .timeline-line.hovered-above,
 .timeline-line.hovered-below {
-  width: 70px;
+  width: 70px !important;
   background-color: #ffffff;
   background-clip: content-box;
 }
 
 .timeline-line.hovered-near {
-  width: 50px;
+  width: 50px !important;
   background-color: #ffffff;
   background-clip: content-box;
 }
 
-.timeline-line.active {
-  background-color: #a83232;
-  background-clip: content-box;
-  width: 110px;
-  z-index: 25;
+.timeline-line.filtered-out {
+  opacity: 0.15;
+  pointer-events: none;
 }
 
-/* Label del pettine (mostra il titolo dell'articolo) */
+/* Label Informativi Fluttuanti delle Tacche */
 .timeline-line .label {
   position: absolute;
   left: calc(100% + 15px);
   top: 50%;
-  transform: translateY(-60%);
+  transform: translateY(-50%);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  
-  /* STRUTTURA DEL TESTO */
-  white-space: normal;       /* Consente al testo di andare a capo quando finisce lo spazio */
+  white-space: normal;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   font-size: 10px;
   font-weight: bold;
-  color: #000;           
+  color: #000;
   line-height: 1.3;
   display: flex;
   align-items: center;
   gap: 8px;
-
-  /* GEOMETRIA DELLA BOLLA (Forzatura larghezza) */
-  min-width: 200px;          /* <--- QUESTO determina la larghezza minima orizzontale */
+  min-width: 200px;
   box-sizing: border-box;
-
-  /* ESTETICA (Sfondo, Bordi e Ombra) */
   background-color: #ffffff;
   border: 1px solid #c0d6df;
   border-radius: 10px;
@@ -676,158 +629,17 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
 .timeline-line.active .label {
   opacity: 1;
 }
-
-.timeline-line.filtered-out {
-  opacity: 0.15;
-  pointer-events: none;
-}
-
-/****** Article Area **************/
+/* ==========================================================================
+   7. TIMELINE MAIN AREA & FEED CARD ARTICOLI
+   ========================================================================== */
 .article-area {
   flex: 1;
   height: 100%;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  padding: 40px 5%; 
+  padding: 40px 5%;
   box-sizing: border-box;
   background-color: #e8f4f8;
-}
-
-/* Article Cards */
-.article-card {
-  width: 100%; 
-  margin-bottom: 16px;
-  background: #ffffff;
-  border: 1px solid #d0d0d0;
-  border-radius: 4px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
-}
-
-
-/* Ripristina il cursore cliccabile anche per gli articoli speciali */
-.article-card.always-expanded .article-card-header {
-  cursor: pointer;
-}
-
-/* EFFETTO ROSSO: Quando l'articolo speciale viene cliccato */
-.article-card.always-expanded.clicked-red {
-  border-color: #a83232; /* Il bordo della card diventa rosso */
-}
-
-.article-card.always-expanded.clicked-red .article-card-header {
-  background: #a83232; /* L'header grigio diventa rosso */
-  transition: background 0.3s ease;
-}
-
-/* Cambia il colore dei testi interni all'header per renderli leggibili sul rosso */
-.article-card.always-expanded.clicked-red h2 {
-  color: #ffffff;
-}
-
-.article-card.always-expanded.clicked-red .article-date-inline {
-  color: #f0f0f0; /* La data diventa bianco opaco */
-}
-
-.article-card.always-expanded.clicked-red .article-toggle {
-  color: #ffffff; /* La freccetta diventa bianca */
-}
-
-.article-card:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Header dell'articolo (Grigio) */
-.article-card-header {
-  padding: 16px;
-  background: #f9f9f9;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.2s ease;
-}
-
-.article-card-header:hover {
-  background: #f0f0f0;
-}
-
-.article-card h2 {
-  font-family: 'Georgia', serif;
-  font-size: 1.2rem;
-  font-weight: normal;
-  margin: 0;
-  color: #112229;
-  line-height: 1.3;
-  flex: 1;
-}
-
-/* Data interna */
-.article-date-inline {
-  font-size: 0.85rem;
-  font-weight: normal;
-  color: #757575;
-  margin-right: 12px;
-  white-space: nowrap; 
-  flex-shrink: 0; /* Impedisce alla data di rimpicciolirsi o spezzarsi */
-}
-
-/* Freccia di controllo */
-.article-toggle {
-  font-size: 1.2rem;
-  color: #5b7b8a;
-  margin-left: 16px;
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-}
-
-.article-card.expanded .article-toggle {
-  transform: rotate(180deg);
-}
-
-/* NUOVO: Blocco Summary (Sfondo Bianco, visibile solo da chiuso) */
-.article-summary-block {
-  padding: 16px;
-  background: #ffffff;
-  font-style: italic;
-  color: #555555;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  border-top: 1px solid #f0f0f0; /* Sottile linea di divisione dall'header grigio */
-}
-
-/* Nasconde il summary quando l'articolo si espande */
-.article-card.expanded .article-summary-block {
-  display: none;
-}
-
-/* Contenuto principale dell'articolo */
-.article-card-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-}
-
-.article-card.expanded .article-card-content {
-  max-height: 2500px;
-  transition: max-height 0.4s ease-in;
-}
-
-/* Testo dell'articolo (Padded correttamente senza tag-meta) */
-.article-card p {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: #2b3e46;
-  margin: 0;
-  padding: 16px; /* Padding uniforme su tutti i lati */
-}
-
-/* Filtri ed elementi strutturali */
-.article-card.filtered-out {
-  opacity: 0.1;
-  pointer-events: none;
 }
 
 .article-area::-webkit-scrollbar {
@@ -843,10 +655,190 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   border-radius: 3px;
 }
 
+/* Card Struttura */
+.article-card {
+  width: 100%;
+  margin-bottom: 16px;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
 
-/* ========== PANNELLO LATERALE DESTRO ========== */
+.article-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.article-card.filtered-out {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Intestazione Card Standard */
+.article-card-header {
+  padding: 16px;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+
+.article-card-header:hover {
+  background: #f0f0f0;
+}
+
+.article-card.always-expanded .article-card-header {
+  cursor: pointer;
+}
+
+.article-card h2 {
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 0;
+  color: #112229;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.article-date-inline {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: #757575;
+  margin-right: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Gestione Elementi d'Apertura e Chiusura delle Card */
+.article-toggle {
+  font-size: 1.2rem;
+  color: #5b7b8a;
+  margin-left: 16px;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-shrink: 0;
+}
+
+.article-card.expanded .article-toggle {
+  transform: rotate(180deg);
+}
+
+.article-summary-block {
+  padding: 16px;
+  background: #ffffff;
+  font-style: italic;
+  color: #555555;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  border-top: 1px solid #f0f0f0;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.article-card.expanded .article-summary-block {
+  display: none;
+  opacity: 0;
+}
+
+/* Meccanismo Fluido Animazione Espansione (Risolto Bug Layout) */
+.article-card-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+.article-card.expanded .article-card-content {
+  max-height: 400px;
+  opacity: 1;
+  visibility: visible;
+  transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+}
+
+.article-card-content p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #2b3e46;
+  margin: 0;
+  padding: 16px;
+}
+
+.article-card-content p + p {
+  padding-top: 0;
+}
+
+/* Stato Modificato di Selezione Articolo Speciale (Click-Red Effect) */
+.article-card.always-expanded.clicked-red {
+  border-color: #a83232;
+}
+
+.article-card.always-expanded.clicked-red .article-card-header {
+  background: #a83232;
+  transition: background 0.3s ease;
+}
+
+.article-card.always-expanded.clicked-red h2 {
+  color: #ffffff;
+}
+
+.article-card.always-expanded.clicked-red .article-date-inline {
+  color: #f0f0f0;
+}
+
+.article-card.always-expanded.clicked-red .article-toggle {
+  color: #ffffff;
+}
+
+/* Elementi Multimediali Interni al Blocco Articolo */
+.article-card-body.flex-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.article-text-wrapper {
+  flex-grow: 1;
+}
+
+.article-image-box {
+  width: 160px;
+  height: 110px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #c0d6df;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.article-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-image-box img {
+  transform: scale(1.05);
+}
+
+.article-image-box.empty {
+  display: none;
+}
+
+
+/* ==========================================================================
+   8. PANNELLO LATERALE DESTRO (Mappa Interattiva & Spiegato Bene)
+   ========================================================================== */
 .right-panel {
-  width: 25% /*450px*/;
+  width: 25%;
   height: 100%;
   padding: 24px 20px;
   box-sizing: border-box;
@@ -858,7 +850,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   overflow: hidden;
 }
 
-/* Terzo Superiore: Mappa */
+/* Sezione Superiore: Mappa Multimediale */
 .map-container {
   height: 40%;
   display: flex;
@@ -866,30 +858,27 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   gap: 8px;
 }
 
-/* Rettangolo contenitore della mappa */
 .map-rectangle {
   flex: 1;
-  position: relative; /* Necessario per posizionare le frecce all'interno */
+  position: relative;
   background-color: #f0f0f0;
   border: 1px solid #c0d6df;
   border-radius: 4px;
   overflow: hidden;
 }
 
-/* Stile dell'immagine dentro il rettangolo */
 .map-image-content {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cambia in 'contain' se preferisci vedere l'immagine intera senza tagli laterali */
+  object-fit: cover;
   display: block;
 }
 
-/* Stile comune per i bottoni di navigazione */
 .map-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(17, 34, 41, 0.6); /* Sfondo scuro semi-trasparente */
+  background-color: rgba(17, 34, 41, 0.6);
   color: #ffffff;
   border: none;
   width: 32px;
@@ -906,25 +895,15 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-/* Effetto hover che richiama il rosso del tuo tema */
 .map-nav-btn:hover {
   background-color: rgba(168, 50, 50, 0.9);
 }
 
-/* Posizionamento sui bordi interni */
-.prev-btn {
-  left: 10px;
-}
-.prev-btn:active {
-  transform: translateY(-50%) scale(0.9);
-}
+.prev-btn { left: 10px; }
+.prev-btn:active { transform: translateY(-50%) scale(0.9); }
 
-.next-btn {
-  right: 10px;
-}
-.next-btn:active {
-  transform: translateY(-50%) scale(0.9);
-}
+.next-btn { right: 10px; }
+.next-btn:active { transform: translateY(-50%) scale(0.9); }
 
 .map-captionTitoloPrincipale {
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -949,13 +928,13 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   margin: 0;
 }
 
-/* Due Terzi Inferiori: Spiegato Bene */
+/* Sezione Inferiore: Widget Link Spiegato Bene */
 .spiegato-bene-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  min-height: 0; /* Permette il corretto scrolling interno del box figli */
+  min-height: 0;
 }
 
 .sb-section-title {
@@ -976,6 +955,19 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   flex-direction: column;
   gap: 16px;
   padding-right: 4px;
+}
+
+.sb-articles-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sb-articles-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sb-articles-list::-webkit-scrollbar-thumb {
+  background: #c0d6df;
+  border-radius: 2px;
 }
 
 .sb-article {
@@ -1009,19 +1001,10 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   color: #a83232;
 }
 
-/* Scrollbar minimale per la lista articoli */
-.sb-articles-list::-webkit-scrollbar {
-  width: 4px;
-}
-.sb-articles-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-.sb-articles-list::-webkit-scrollbar-thumb {
-  background: #c0d6df;
-  border-radius: 2px;
-}
 
-/* Home View / Newspaper Layout (invariato) */
+/* ==========================================================================
+   9. HOME VIEW / GIORNALE VERO E PROPRIO (Finto layout editoriale)
+   ========================================================================== */
 .home-view {
   width: 100%;
   height: 100%;
@@ -1032,6 +1015,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   position: relative;
   flex: 1;
 }
+
 .back-button {
   position: fixed;
   top: 20px;
@@ -1048,9 +1032,11 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   transition: background-color 0.2s ease;
   z-index: 50;
 }
+
 .back-button:hover {
   background-color: #4a6572;
 }
+
 .newspaper-layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -1058,6 +1044,8 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   grid-template-columns: 1fr 300px;
   gap: 30px;
 }
+
+/* Griglia degli articoli simulati */
 .featured-article {
   grid-column: 1;
   display: grid;
@@ -1066,36 +1054,40 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   margin-bottom: 30px;
   align-items: start;
 }
+
 .featured-placeholder {
   width: 400px;
   height: 250px;
   background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
   border-radius: 4px;
 }
+
 .featured-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 12px;
 }
+
 .featured-headline,
 .article-card-header h2 {
   display: flex !important;
   align-items: flex-start;
-  gap: 10px; /* Spazio orizzontale fisso tra la data e il trattino/titolo */
+  gap: 10px;
   margin: 0;
 }
 
 .article-title-text {
   flex-grow: 1;
-  /* Il testo ora si sviluppa come blocco autonomo e va a capo allineato */
 }
+
 .featured-description {
   width: 95%;
   height: 80px;
   background: #efefef;
   border-radius: 4px;
 }
+
 .grid-articles {
   grid-column: 1;
   display: grid;
@@ -1103,36 +1095,44 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   gap: 25px;
   margin-bottom: 30px;
 }
+
 .grid-item {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+
 .grid-item.large {
   grid-column: span 2;
 }
+
 .grid-item.large .article-image {
   width: 100%;
   height: 300px;
 }
+
 .article-image {
   width: 100%;
   height: 180px;
   background: linear-gradient(135deg, #e8e8e8 0%, #f8f8f8 100%);
   border-radius: 4px;
 }
+
 .article-headline {
   width: 100%;
   height: 20px;
   background: #d5d5d5;
   border-radius: 3px;
 }
+
 .article-snippet {
   width: 95%;
   height: 40px;
   background: #efefef;
   border-radius: 3px;
 }
+
+/* Spazio Pubblicitario */
 .sidebar-ads {
   grid-column: 2;
   display: flex;
@@ -1141,6 +1141,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   align-self: start;
   grid-row: 1 / 10;
 }
+
 .ad-block {
   width: 100%;
   height: 250px;
@@ -1149,47 +1150,22 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   border: 1px solid #e0e0e0;
 }
 
-
-/* ========== STILE IMMAGINI ARTICOLI TIMELINE ========== */
-.article-card-body.flex-layout {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: flex-start;
-  width: 100%;
+/* ==========================================================================
+   CONFIGURAZIONE VARIABILI (Per modifiche rapide ai colori)
+   ========================================================================== */
+:root {
+  --color-leather: #8B5A2B;
+  --color-accent-red: #ff0000;
+  --color-accent-red-hover: #ff1a1a;
+  --color-dark-text: #1a3038;
+  --color-intro-bg: #3c9ec3;
+  --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.8);
 }
 
-.article-text-wrapper {
-  flex-grow: 1;
-}
-
-.article-image-box {
-  width: 160px;
-  height: 110px;
-  flex-shrink: 0;
-  border-radius: 6px;
-  overflow: hidden;
-  background-color: #c0d6df; /* Colore placeholder se vuoto */
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-.article-image-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.article-card:hover .article-image-box img {
-  transform: scale(1.05); /* Effetto micro-zoom discreto al passaggio del mouse */
-}
-
-.article-image-box.empty {
-  display: none; /* Nasconde il blocco se l'articolo non fa parte dello "Spiegato bene" */
-}
-
-
-/* ========== NUOVE CARD ORIZZONTALI MASTERPOST ========== */
+/* ==========================================================================
+   NUOVE CARD ORIZZONTALI MASTERPOST
+   ========================================================================== */
 .masterpost-cards-container {
   display: flex;
   flex-direction: row;
@@ -1209,63 +1185,33 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   flex: 1;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
-  border-left: 4px solid #8B5A2B; /* Richiamo estetico al marrone cuoio del tuo tema */
+  -webkit-backdrop-filter: blur(8px);
+  border-left: 4px solid var(--color-leather);
   border-radius: 6px;
   padding: 20px 10px;
   text-align: center;
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #1a3038;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  color: var(--color-dark-text);
+  box-shadow: var(--card-shadow);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              background 0.25s ease, 
+              border-color 0.25s ease, 
+              box-shadow 0.25s ease;
 }
 
 .mp-card:hover {
   transform: translateY(-4px);
   background: #ffffff;
-  border-left-color: #ff0000; /* Accento rosso in tinta con l'indicatore della timeline */
+  border-left-color: var(--color-accent-red);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
-/* Animazione fluida d'ingresso */
-@keyframes slideDownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 800px) {
-
-  .cover-timeline-wrapper {
-    height: 60px; /* Abbassa un po' l'altezza della barra per recuperare spazio sul telefono */               
-  }
-
-  .cover-scroll-button {
-    white-space: normal; /* Permette al testo lungo del bottone di andare a capo su due righe nei telefoni */
-  }
-
-  .masterpost-cards-container {
-    flex-direction: column;
-    width: 100%;
-    padding: 0 20px; /* Riduce i padding laterali sui telefoni */
-    bottom: 60px;
-  }
-  .article-card-body.flex-layout {
-    flex-direction: column;
-  }
-  .article-image-box {
-    width: 100%;
-    height: 130px;
-  }
-}
-
+/* ==========================================================================
+   OVERLAY ALTRI THREAD (EFFETTO MAZZO DI CARTE)
+   ========================================================================== */
 .other-threads-overlay {
   position: absolute;
   top: 15%; 
@@ -1282,27 +1228,25 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   display: none !important;
 }
 
-/* Riga superiore di intestazione controlli */
+/* Header controlli overlay */
 .threads-header-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-  padding: 0 60px; /* Allineato perfettamente all'esordio delle card */
+  padding: 0 60px;
   box-sizing: border-box;
 }
 
-/* Scritta Altri Thread bianca a sinistra */
 .threads-label {
   color: #ffffff;
-  font-family: Garamond,'Times New Roman', Times, serif;
+  font-family: Garamond, 'Times New Roman', Times, serif;
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 0.1rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
-/* X Rossa di chiusura sopra l'ultima card */
 .threads-close-btn {
   color: #FFFFFF;
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -1312,15 +1256,15 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   user-select: none;
   line-height: 0.7;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.25s ease;
 }
 
 .threads-close-btn:hover {
   transform: scale(1.2) rotate(90deg);
-  color: #ff1a1a;
+  color: var(--color-accent-red-hover);
 }
 
-/* Griglia contenitore delle 4 Card orizzontali */
+/* Contenitore Griglia delle Card */
 .threads-cards-container {
   display: flex;
   flex-direction: row;
@@ -1330,11 +1274,11 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   justify-content: center;
 }
 
-/* Card Verticale, Alta e Trasparente (Stile Glassmorphism) */
+/* Card Verticali in Glassmorphism */
 .custom-thread-card {
   flex: 1;
-  height: 400px;       /* Più che raddoppiata l'altezza rispetto a prima */
-  min-width: 250px;    /* Struttura solida e slanciata */
+  height: 400px;       
+  min-width: 250px;    
   position: relative;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -1344,32 +1288,31 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   overflow: hidden;
   box-shadow: -12px 15px 35px rgba(0, 0, 0, 0.55);
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-  
-  /* EFFETTO MAZZO DI CARTE: Margine negativo a sinistra per farle accavallare */
-  margin-left: -40px; 
+  margin-left: -40px; /* Effetto accavallamento */
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
 }
 
-/* La prima card a sinistra non deve subire il rientro */
 .custom-thread-card:first-child {
   margin-left: 0;
 }
 
-/* Z-INDEX PROGRESSIVO: La card a destra sta SOPRA quella a sinistra */
+/* Z-Index progressivo per stacking corretto */
 .custom-thread-card:nth-child(1) { z-index: 1; }
 .custom-thread-card:nth-child(2) { z-index: 2; }
 .custom-thread-card:nth-child(3) { z-index: 3; }
 .custom-thread-card:nth-child(4) { z-index: 4; }
 
-/* FOCUS: Quando passi il mouse sopra una card, questa vola in primo piano assoluto */
 .custom-thread-card:hover {
   transform: translateY(-20px) scale(1.04);
   border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-  z-index: 99; /* Salta sopra tutte le altre card durante l'hover */
+  box-shadow: var(--card-shadow-hover);
+  z-index: 99; /* Salta in primo piano */
 }
 
-/* L'immagine ora si appropria dell'intero scheletro della card */
+/* Immagini interne alle Card */
 .card-image-wrapper {
   position: absolute;
   top: 0;
@@ -1390,13 +1333,13 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   transform: scale(1.05);
 }
 
-/* TESTO IN OVERLAY ASSOLUTO SOPRA L'IMMAGINE */
+/* Testo in Overlay */
 .card-caption {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 45%; /* Sfumatura estesa per accogliere il testo */
+  height: 45%; 
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1404,85 +1347,66 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   box-sizing: border-box;
   color: #ffffff;
   font-family: 'Georgia', serif;
-  font-size: 1.25rem; /* Testo più grande e d'impatto */
+  font-size: 1.25rem; 
   font-weight: bold;
   text-align: center;
   z-index: 2;
-  
-  /* Sfumatura nera morbida per rendere il testo bianco leggibile su qualsiasi foto */
   background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* ========== ANIMAZIONE CARDS ========== */
-@keyframes expandFromTitle {
-  0% {
+/* ==========================================================================
+   ANIMAZIONI
+   ========================================================================== */
+@keyframes slideDownFade {
+  from {
     opacity: 0;
-    transform: scale(0.02);
+    transform: translateY(-15px);
   }
-  100% {
+  to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
+}
+
+@keyframes expandFromTitle {
+  0% { opacity: 0; transform: scale(0.02); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes shrinkToTitle {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.02);
-  }
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.02); }
 }
 
-/* Adattamento reattivo per schermi compatti */
-@media (max-width: 900px) {
-  .other-threads-overlay {
-    top: 12%;
-    width: 94%;
-    left: 3%;
-  }
-  .threads-cards-container {
-    flex-direction: column;
-    padding: 10px 10px;
-  }
-  .custom-thread-card {
-    height: 140px;
-    margin-left: 0; /* Rimuove la sovrapposizione in verticale */
-    margin-top: -20px;
-  }
-  .custom-thread-card:first-child { margin-top: 0; }
-  .card-caption {
-    height: 100%;
-    align-items: center;
-    background: linear-gradient(to right, rgba(0,0,0,0.85) 40%, transparent 100%);
-  }
+@keyframes introBlink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
 }
 
-/* ========== SCHERMATA INTRODUZIONE ========== */
+/* ==========================================================================
+   SCHERMATA INTRODUZIONE
+   ========================================================================== */
 .introduzione-cover {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #3c9ec3;
+  background-color: var(--color-intro-bg);
   color: #ffffff;
   font-family: 'Times New Roman', Times, serif;
-  z-index: 9999999; /* Superiore a tutto il resto del sito */
+  z-index: 9999999; 
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 30px;
   box-sizing: border-box;
   cursor: pointer;
-  overflow-y: auto; /* Permette lo scroll verticale solo se lo schermo è minuscolo */
+  overflow-y: auto; 
   transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-/* Classe per far sparire la schermata */
 .introduzione-cover.fade-out {
   opacity: 0;
   visibility: hidden;
@@ -1493,7 +1417,7 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   max-width: 650px;
   width: 100%;
   text-align: center;
-  margin: auto; /* Centratura flessibile */
+  margin: auto; 
 }
 
 .introduzione-content h2 {
@@ -1509,7 +1433,6 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   margin-bottom: 1.2rem;
 }
 
-/* Piccolo suggerimento visivo pulsante in fondo */
 .intro-hint {
   margin-top: 3rem;
   font-family: sans-serif;
@@ -1520,7 +1443,59 @@ html:has(#initial-cover:not(.fade-out)) .home-view {
   animation: introBlink 1.8s infinite ease-in-out;
 }
 
-@keyframes introBlink {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+/* ==========================================================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+/* Layout per tablet e schermi intermedi (fino a 900px) */
+@media (max-width: 900px) {
+  .other-threads-overlay {
+    top: 12%;
+    width: 94%;
+    left: 3%;
+  }
+  .threads-cards-container {
+    flex-direction: column;
+    padding: 10px 10px;
+  }
+  .custom-thread-card {
+    height: 140px;
+    margin-left: 0; 
+    margin-top: -20px;
+  }
+  .custom-thread-card:first-child { 
+    margin-top: 0; 
+  }
+  .card-caption {
+    height: 100%;
+    align-items: center;
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 40%, transparent 100%);
+  }
+}
+
+/* Layout per smartphone (fino a 800px) */
+@media (max-width: 800px) {
+  .cover-timeline-wrapper {
+    height: 60px;              
+  }
+
+  .cover-scroll-button {
+    white-space: normal; 
+  }
+
+  .masterpost-cards-container {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px; 
+    /* Nota: rimosso il 'bottom: 60px' che creava conflitto senza una posizione assoluta definita */
+  }
+  
+  .article-card-body.flex-layout {
+    flex-direction: column;
+  }
+  
+  .article-image-box {
+    width: 100%;
+    height: 130px;
+  }
 }
